@@ -1,0 +1,301 @@
+main.buildpage {
+  padding-left: 120px;
+}
+
+@media (max-width: 575px) {
+  main.buildpage {
+    padding-top: 60px;
+    padding-left: 0px;
+  }
+/*
+  .ss-text {
+    display: inline;
+  }
+*/
+}
+
+.build-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  column-gap: 5px;
+}
+
+@media (max-width: 1070px) {
+  .build-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-1 {
+  border : 1px solid rgb(220, 220, 220);
+  padding: 5px;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.sub-heading {
+  font-weight: 600;
+  font-size: 20px;
+  background-color: rgb(200, 200, 200);
+  padding: 3px 10px;
+  border-radius: 25px;
+  text-align: center;
+}
+
+.selector {
+  display: flex;
+  justify-content: space-around;
+}
+
+.selector-option {
+  display: grid;
+  grid-template-columns: 25px 1fr;
+}
+
+.options {
+  padding: 5px 0px 5px 20px;
+}
+
+@media (max-width: 575px) {
+  .options {
+    padding: 5px 0 5px 10px;
+  }
+}
+
+.options P {
+  cursor: pointer;
+  padding: 2px 10px;
+}
+
+.motherboard-button:hover, .cpu-button:hover, .gpu-button:hover, .storage-button:hover, .ram-button:hover, .psu-button:hover, .case-button:hover, .cooler-button:hover {
+  background-color: rgb(220, 220, 220);
+}
+
+.selected-motherboard, .selected-cpu, .selected-gpu, .selected-storage, .selected-ram, .selected-psu, .selected-case, .selected-cooler {
+  color: white;
+  background-color: rgb(0, 114, 206);
+ 
+}
+
+.motherboard-container, .cpu-container, .gpu-container, .storage-container, .ram-container, .psu-container, .case-container, .cooler-container {
+  position: relative;
+  margin: 5px;
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+
+.invisible {
+  display: none;
+}
+
+.motherboard-info, .cpu-info, .gpu-info, .storage-info, .ram-info, .psu-info, .case-info, .cooler-info {
+  display: flex;
+  align-items: center;
+
+  font-family: Roboto, Arial;
+  background-color: white;
+  padding: 10px;
+  
+  border-radius: 5px;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
+
+  position: absolute;
+  top: 28px;
+
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.motherboard-container:hover .motherboard-info,
+.cpu-container:hover .cpu-info,
+.gpu-container:hover .gpu-info,
+.storage-container:hover .storage-info,
+.ram-container:hover .ram-info,
+.psu-container:hover .psu-info,
+.case-container:hover .case-info,
+.cooler-container:hover .cooler-info {
+  opacity: 1;
+}
+
+/* ================= Cost Summary ================= */
+
+.section-2 {
+  border : 1px solid rgb(220, 220, 220);
+  padding: 5px;
+  /* width: 300px; */
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1070px) {
+  .section-2 {
+    position: fixed;
+    top: 68px;
+    right: 10px;
+    width: 300px;
+  }
+}
+
+.cost-title {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(220, 220, 220);
+  padding: 5px 0;
+}
+
+.cost-element, .cost-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px;
+}
+
+.cost {
+  font-family: Roboto, Arial;
+}
+
+.cost-bar {
+  background-color: rgb(220, 220, 220);
+}
+
+.cost-title, .cost-bar {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+/*  ================= side bar ================= */
+
+.build-sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  bottom: 0px;
+  width: 120px;
+
+  background-color: rgb(100, 100, 100);
+}
+
+.sidebar-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 5px 20px;
+  padding: 5px 0;
+
+  background-color: rgb(150, 150, 150);
+  height: 55px;
+
+  cursor: pointer;
+  transition: margin 0.15s;
+}
+
+.sidebar-button:hover {
+  margin: 5px 10px;
+}
+
+.build-sidebar img {
+  width: 60px;
+  height: 55px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+@media (max-width: 575px) {
+  .build-sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    
+    background-color: rgb(100, 100, 100);
+    height: 60px;
+    width: 100%;
+
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+
+    z-index: 900;
+  }
+
+  .sidebar-button {
+    width: 60px;
+    height: 55px;
+
+    padding: 0;
+    margin: auto 15px;
+    
+    flex: 0 0 auto;
+  }
+
+  .sidebar-button:hover {
+    margin: auto 15px;
+  }
+
+  .build-sidebar img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  /*
+  .build-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 90px;
+  }
+
+  .sidebar-button {
+    height: 55px;
+    margin: 10px 15px;
+  }
+
+  .sidebar-button:hover {
+    margin: 10px 5px;
+  }
+*/
+}
+
+/* ================= overlay image ================= */
+
+.overlay {
+  background-color: rgba(200, 200, 200, 0.8);
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  left: 120px;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+@media (max-width: 575px) {
+  .overlay {
+    top: 120px;
+    left: 0px;
+  }
+}
+
+.overlay img {
+  max-width: 100%;
+  max-height: 550px;
+}
+
+.close-button {
+  background-color: black;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}

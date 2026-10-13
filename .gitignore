@@ -1,0 +1,28 @@
+# FRONTEND
+
+# dependencies
+simple-system-frontend/node_modules
+simple-system-frontend/.pnp
+simple-system-frontend/.pnp.js
+
+# testing
+simple-system-frontend/coverage
+
+# production
+simple-system-frontend/build
+
+# misc
+simple-system-frontend/.DS_Store
+simple-system-frontend/.env.local
+simple-system-frontend/.env.development.local
+simple-system-frontend/.env.test.local
+simple-system-frontend/.env.production.local
+
+#logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# BACKEND
+simple-system-backend/node_modules
+simple-system-backend/.env
