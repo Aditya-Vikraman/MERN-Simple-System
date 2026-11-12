@@ -1,4 +1,6 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
+
+import { ScrollRestoration } from 'react-router-dom';
 
 import {Header} from '../components/Header.js';
 import mail_icon from '../images/icons/mail-icon.png';
@@ -58,72 +60,94 @@ function HomePage () {
 
   },[])
   
-  // const laptopsData = [{
-  //   _id: '1',
-  //   name: 'Lenovo LOQ 15 IRX10',
-  //   cpu: 'Intel Core i5-13450HX (10 Core, 4.6GHz Turbo)',
-  //   ram: 'DDR5-16GB (4800MHz)',
-  //   gpu: 'nvidia RTX 5060 (GDDR7-8GB)',
-  //   storage: '512GB SSD (M.2, PCIe 4.0)',
-  //   display: 'IPS, 15.6", FHD, 144Hz (Anti-Glare, 300 nit)',
-  //   price: 113000,
-  //   image: 'images/products/laptop/Lenovo-LOQ-15-IRX10.jpg',
-  // },
-  // {
-  //   _id: '2',
-  //   name: 'Asus Gaming V16 (V3607VM-RP057WS)',
-  //   cpu: 'Intel Core 7 240H (10 Core, 5.2GHz Turbo)',
-  //   ram: 'DDR5-16GB',
-  //   gpu: 'nvidia RTX 5060 (GDDR7-8GB)',
-  //   storage: '512GB SSD (M.2, PCIe 4.0 NVMe)',
-  //   display: 'IPS, 16", FHD+, 144Hz (Anti-Glare, 300 nit)',
-  //   price: 110000,
-  //   image: 'images/products/laptop/Asus-V16-5060.jpg',
-  // }]
+  // const laptopsData = [
+  //   {
+  //     _id: 1,
+  //     name: 'Asus Gaming 16 (V3607VM-RP038WS)',
+  //     cpu: 'Intel Core 7 240H (10 Core, 5.2GHz Turbo)',
+  //     ram: 'DDR5-16GB (SO-DIMM)',
+  //     gpu: 'nvidia RTX 5050 (GDDR7-8GB)',
+  //     storage: '512GB SSD (M.2, PCIe 4.0 NVMe)',
+  //     display: 'IPS, 16", FHD+, 144Hz (Anti-Glare, 300 nit)',
+  //     price: 99990,
+  //     image: 'images/products/laptop/Asus-V16-5050.jpg',
+  //   },
+  //   {
+  //     _id: 2,
+  //     name: 'HP Victus 15 (fa2701TX)',
+  //     cpu: 'Intel Core i5-13420H (8 Core, 4.6GHz Turbo)',
+  //     ram: 'DDR4-16GB (3200MHz)',
+  //     gpu: 'nvidia RTX 4050 (GDDR6-6GB)',
+  //     storage: '512GB SSD (M.2, PCIe 4.0 NVMe)',
+  //     display: 'IPS, 15.6", FHD, 144Hz (Anti-Glare, 300 nit)',
+  //     price: 81000,
+  //     image: 'images/products/laptop/HP-Victus-15-(fa2701TX).jpg',
+  //   },
+  //   {
+  //     _id: 3,
+  //     name: 'Asus TUF Gaming F16 (FX607VJB-RL179WS)',
+  //     cpu: 'Intel Core 5 210H (8 Core, 4.8GHz Max Boost)',
+  //     ram: 'DDR5-16GB (SO-DIMM, 5600MHz)',
+  //     gpu: 'nvidia RTX 3050 (GDDR6-6GB)',
+  //     storage: '512GB SSD (M.2, PCIe 4.0 NVMe)',
+  //     display: '16", FHD+, 144Hz (Anti-glare, 300 nit)',
+  //     price: 77000,
+  //     image: 'images/products/laptop/Asus-TUF-F16-3050.jpg',
+  //   },
+  // ]
 
-  let laptopElements = [];
+  let filteredLaptops = data;
 
-  if (data.length > 0) {
-    let filteredLaptops = data;
+  // if (data.length === 0) {
+  //   filteredLaptops = laptopsData
+  // }
+
+  const scrollRef = useRef(null)
+
+  if (search !== "") {
+    const regexp = /\s|,\s/g;
+    const searchExp = search.replace(regexp, ",")
+    const searchArray = searchExp.split(",");
   
-    if (search !== "") {
-      const regexp = /\s|,\s/g;
-      const searchExp = search.replace(regexp, ",")
-      const searchArray = searchExp.split(",");
-    
-      const newArray = filteredLaptops.filter(checkLaptops);
-    
-      function checkLaptops (laptop) {
-        return searchArray.some((searchItem) => {
-          return Object.keys(laptop).some(key => {
-            return String(laptop[key]).toLowerCase().includes(`${searchItem.toLowerCase()}`)
-          })
-        });
-      }
-      
-      filteredLaptops = newArray;
+    const newArray = filteredLaptops.filter(checkLaptops);
+  
+    function checkLaptops (laptop) {
+      return searchArray.some((searchItem) => {
+        return Object.keys(laptop).some(key => {
+          return String(laptop[key]).toLowerCase().includes(`${searchItem.toLowerCase()}`)
+        })
+      });
     }
+    
+    filteredLaptops = newArray;
 
-    laptopElements = filteredLaptops.map((laptop) => {
-      return (
-        <Laptop 
-          key = {laptop._id}
-          name = {laptop.name}
-          cpu = {laptop.cpu}
-          ram = {laptop.ram}
-          gpu = {laptop.gpu}
-          storage = {laptop.storage}
-          display = {laptop.display}
-          price = {laptop.price}
-          image = {laptop.image}
-        />
-      )
+    scrollRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block : 'start'
     })
   }
+  
+  let laptopElements = [];
+  
+  laptopElements = filteredLaptops.map((laptop) => {
+    return (
+      <Laptop 
+        key = {laptop._id}
+        name = {laptop.name}
+        cpu = {laptop.cpu}
+        ram = {laptop.ram}
+        gpu = {laptop.gpu}
+        storage = {laptop.storage}
+        display = {laptop.display}
+        price = {laptop.price}
+        image = {laptop.image}
+      />
+    )
+  })
 
   function Laptop (props) {
     return (
-      <div className="product-container">
+      <article className="product-container">
         <div className="product-grid">
           <div className="product-image-container">
             <img className="product-image" 
@@ -181,35 +205,47 @@ function HomePage () {
             </p>
           </div>
         </div>
-      </div>
+      </article>
     )
   }
 
+  const focusRef = useRef(null)
+
   function OverlayElement () {
+    useEffect(() => {
+      // if (focusRef.current) {
+      //   focusRef.current.focus()
+      // }
+      focusRef.current?.focus()
+    },[])
     return (
       <div className="overlay">
         <img src={overlay} alt="laptop Enlarged"/>
-        <p className="close-button"
+        <button className="close-button" 
+          aria-label="close overlay image"
           onClick={() => setOverlay("")}
+          ref={focusRef}
         >
           X
-        </p>
+        </button>
     </div>
     )
   } 
  
   return (
     <>
+      <ScrollRestoration />
+
       <Header location={"homePage"} 
         handleSearch={(value) => setSearch(value)} 
       />
 
       <main className="homepage">
-        <div className="products-grid">
+        <div ref={scrollRef} className="products-grid">
+          {laptopElements}
           {loading && <p>Loading...</p>}
           {error && <p>Error occured while fetching data. Try again later.
             <br/>Error message: {error}</p>}
-          {data && laptopElements}
         </div>
 
         <div className="image-box">
@@ -217,7 +253,7 @@ function HomePage () {
         </div>
       </main>
 
-      <div className="mail-pop">
+      <footer className="mail-pop">
         <div className="mail-icon-image-container">
           <img className="mail-icon-image" 
             src={mail_icon} 
@@ -230,7 +266,7 @@ function HomePage () {
             />
           </div>
         </div>
-      </div>
+      </footer>
     </>
   );
 }

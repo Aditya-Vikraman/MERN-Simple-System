@@ -32,49 +32,63 @@ main.infopage {
   max-height: 100%;
 }
 
+/* ****************** heading  ****************** */
+.title {
+  font-family: Poppins, Arial;
+  display: flex;
+  justify-content: center;
+}
+
 .topic {
+  font-family: Poppins, Arial;
+  font-size: 1.2rem;
   margin: 5px;
   background-color: rgb(200, 200, 200);
   margin: 10px 0;
   padding: 2px 10px;
-  font-weight: 500;
 }
 
-.intel-sku-suffix {
-  display: grid;
-  border: 1px solid rgb(200, 200, 200);
-  padding: 0 10px 0 10px;
-  max-width: 800px;
+/* ****************** table ****************** */
+
+.intel-suffix-table, .display-table {
+  border-collapse: separate;
+  border-spacing: 10px;
+
+  font-family: Poppins, Arial;
+
+  outline: 1px solid rgb(200, 200, 200);
+  /* border: 1px solid rgb(200, 200, 200); */
+
+  padding: 0 10px;
+
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   margin-left: 10px;
 }
 
-.suffix-config{
-  border-bottom: 1px solid rgb(200, 200, 200);
+.intel-suffix-table caption {
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
-.suffix-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.intel-suffix-table tr, .display-table tr{
+  background-color:rgb(200, 200, 200);
 }
 
-.suffix {
-  width: 50px;
-  background-color: rgb(200, 200, 200);
-  margin-bottom: 10px;
-  padding: 2px 10px;
-  border-radius: 30px 0 0 30px;
+.intel-suffix-table th, .display-table th {
+  /* background-color:rgb(200, 200, 200); */
+  border-radius: 30px;
+  padding: 2px 20px;
 }
 
-.optimization {
-  flex: 1;
-  background-color: rgb(200, 200, 200);
-  margin-bottom: 10px;
-  border-radius: 0 30px 30px 0;
-  padding: 2px 10px;
+.intel-suffix-table td, .display-table td {
+  /* background-color:rgb(200, 200, 200); */
+  padding: 2px 20px;
+  border-radius: 30px;
+  text-align: center;
 }
+
+/* ****************** images ****************** */
 
 .amd-logo-image {
   width: 100px;

@@ -99,12 +99,14 @@ export default function RamHTML (props) {
 
   return (
     <>
-      <p className="sub-heading"
+      <h2 className="sub-heading"
         ref={props.ref}
       >
         Memory (RAM)
-      </p>
-      <div className="selector">
+      </h2>
+
+      <fieldset className="selector">
+        <legend>Select Memory Type</legend>
         <div className="selector-option">
           <input className="ram-selector-button" 
             type="radio" 
@@ -112,8 +114,9 @@ export default function RamHTML (props) {
             value="DDR5"
             checked={type === "DDR5"}
             onChange={(event) => {setType(event.target.value)}}
+            id="DDR5"
           />
-          <div><b>DDR5</b></div>
+          <label htmlFor="DDR5"><b>DDR5</b></label>
         </div>
         <div className="selector-option">
           <input className="gpu-selector-button" 
@@ -122,10 +125,12 @@ export default function RamHTML (props) {
             value="DDR4"
             checked={type === "DDR4"}
             onChange={(event) => {setType(event.target.value)}}
+            id="DDR4"
           />
-          <div><b>DDR4</b></div>
+          <label htmlFor="DDR4"><b>DDR4</b></label>
         </div>
-      </div>
+      </fieldset>
+
       <div className="options">
         <EnchancedComponent
           {...props}

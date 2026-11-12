@@ -108,12 +108,14 @@ export default function StorageHTML (props) {
 
   return (
     <>
-      <p className="sub-heading"
+      <h2 className="sub-heading"
         ref={props.ref}
       >
         Storage
-      </p>
-      <div className="selector">
+      </h2>
+
+      <fieldset className="selector">
+      <legend>Select Storage Size</legend>
         <div className="selector-option">
           <input className="storage-size-selector-button" 
             type="radio" 
@@ -121,8 +123,9 @@ export default function StorageHTML (props) {
             value="4-TB"
             checked={capacity === "4-TB"}
             onChange={(event) => {setCapacity(event.target.value)}}
+            id="4-TB"
           />
-          <div><b>4-TB</b></div>
+          <label htmlFor="4-TB"><b>4-TB</b></label>
         </div>
         <div className="selector-option">
           <input className="storage-size-selector-button" 
@@ -131,8 +134,9 @@ export default function StorageHTML (props) {
             value="2-TB"
             checked={capacity === "2-TB"}
             onChange={(event) => {setCapacity(event.target.value)}}
+            id="2-TB"
           />
-          <div><b>2-TB</b></div>
+          <label htmlFor="2-TB"><b>2-TB</b></label>
         </div>
         <div className="selector-option">
           <input className="storage-size-selector-button" 
@@ -141,10 +145,12 @@ export default function StorageHTML (props) {
             value="1-TB"
             checked={capacity === "1-TB"}
             onChange={(event) => {setCapacity(event.target.value)}}
+            id="1-TB"
           />
-          <div><b>1-TB</b></div>
+          <label htmlFor="1-TB"><b>1-TB</b></label>
         </div>
-      </div>
+      </fieldset>
+
       <div className="options">
         <EnchancedComponent 
           {...props}

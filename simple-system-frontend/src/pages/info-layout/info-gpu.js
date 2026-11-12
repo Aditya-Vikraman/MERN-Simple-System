@@ -4,6 +4,10 @@ import amd_radeon_logo from '../../images/amd-radeon.png';
 function GpuHTML () {
   return (
     <>
+      <h1 className="title">
+        Graphics Processing Unit (GPU)
+      </h1>
+      
       <div className="gpu-image-container">
         <img className="nvidia-logo" 
           src={nvidia_logo}

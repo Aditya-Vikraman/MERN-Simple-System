@@ -1,6 +1,8 @@
+import { ScrollRestoration } from 'react-router-dom';
+
 import { Header } from '../components/Header.js';
 import { formatCurrency } from '../utils/money.js';
-import { useState,useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import MotherboardHTML from './build-layout/build-motherboard.js';
 import ProcessorHTML from './build-layout/build-cpu.js';
@@ -12,7 +14,7 @@ import CaseHTML from './build-layout/build-case.js';
 import CoolerHTML from './build-layout/build-cooler.js';
 
 import '../styles/general.css';
-import '../styles/build.css';
+import '../styles/buildPage.css';
 
 import motherboard_icon from '../images/icons/motherboard-icon.png';
 import cpu_icon from '../images/icons/cpu-icon.png';
@@ -52,20 +54,74 @@ function BuildPage () {
       coolerImage: "",
     })
   )
-  const [overlay, setOverlay] = useState(() => "")
+  const [overlay, setOverlay] = useState(() => ({item: "", path: ""}))
   const [socket, setSocket] = useState(() => "");
 
   const totalCost = selectedComponents.motherboardPrice + selectedComponents.cpuPrice + selectedComponents.gpuPrice + selectedComponents.storagePrice + selectedComponents.ramPrice + selectedComponents.psuPrice + selectedComponents.casePrice + selectedComponents.coolerPrice
 
+  const focusRef = useRef(null)
+
   function OverlayElement () {
+    let selected;
+    if (overlay.item === "motherboard") {
+      selectedComponents.motherboardImage !== "" ?
+        selected = true :
+        selected = false
+    }
+    if (overlay.item === "processor") {
+      selectedComponents.cpuImage !== "" ?
+        selected = true :
+        selected = false
+    }
+    if (overlay.item === "grapics card") {
+      selectedComponents.gpuImage !== "" ?
+        selected = true :
+        selected = false
+    }
+    if (overlay.item === "storage") {
+      selectedComponents.storageImage !== "" ?
+        selected = true :
+        selected = false
+    }
+    if (overlay.item === "memory") {
+      selectedComponents.ramImage !== "" ?
+        selected = true :
+        selected = false
+    }
+    if (overlay.item === "power supply") {
+      selectedComponents.psuImage !== "" ?
+        selected = true :
+        selected = false
+    }
+    if (overlay.item === "case") {
+      selectedComponents.caseImage !== "" ?
+        selected = true :
+        selected = false
+    }
+    if (overlay.item === "cooler") {
+      selectedComponents.coolerImage !== "" ?
+        selected = true :
+        selected = false
+    }
+
+    useEffect(() => {
+      // if (focusRef.current) {
+      //   focusRef.current.focus()
+      // }
+      focusRef.current?.focus()
+    },[])
+
     return (
-      <div className="overlay">
-        <img src={overlay} alt="laptop Enlarged"/>
-        <p className="close-button"
-          onClick={() => setOverlay("")}
+      <div className="overlay overlay-build">
+        <img src={overlay.path} alt={selected? `selected ${overlay.item} Enlarged` : `default ${overlay.item} icon`}/>
+        {!selected && <p>Please select a {overlay.item}</p>}
+        <button className="close-button"
+          aria-label="close overlay image"
+          onClick={() => setOverlay({item: "", path: ""})}
+          ref={focusRef}
         >
           X
-        </p>
+        </button>
     </div>
     )
   } 
@@ -83,94 +139,104 @@ function BuildPage () {
 
   return (
     <>
+      <ScrollRestoration />
+
       <Header location={"buildPage"}/>
 
       <div className="build-sidebar">
-        <div className="sidebar-button js-motherboard-sidebar-container"
+        <div className="sidebar-button"
           onClick={() => {
-            setOverlay(selectedComponents.motherboardImage || motherboard_icon)
+            setOverlay({item: "motherboard", path:selectedComponents.motherboardImage || motherboard_icon})
             autoScroll('motherboard')
           }}
         >
           <img src={selectedComponents.motherboardImage || motherboard_icon} 
-            alt="default or selected motherboard icon"
+            alt={selectedComponents.motherboardImage === '' ? 'default motherboard icon': 'selected motherboard'}
           />
+          <p>Please select a motherboard</p>
         </div>
-        <div className="sidebar-button js-cpu-sidebar-container"
+        <div className="sidebar-button"
           onClick={() => {
-            setOverlay(selectedComponents.cpuImage || cpu_icon)
+            setOverlay({item: "processor", path:selectedComponents.cpuImage || cpu_icon})
             autoScroll('cpu')
           }}
         >
           <img src={selectedComponents.cpuImage || cpu_icon} 
-            alt="default or selected cpu icon"
+            alt={selectedComponents.cpuImage === '' ? 'default processor icon': 'selected processor'}
           />
+          <p>Please select a processor</p>
         </div>
-        <div className="sidebar-button js-gpu-sidebar-container"
+        <div className="sidebar-button"
           onClick={() => {
-            setOverlay(selectedComponents.gpuImage || gpu_icon)
+            setOverlay({item:"grapics card", path:selectedComponents.gpuImage || gpu_icon})
             autoScroll('gpu')
           }}
         >
           <img src={selectedComponents.gpuImage || gpu_icon} 
-            alt="default or selected gpu icon"
+            alt={selectedComponents.gpuImage === '' ? 'default graphics card icon': 'selected graphics card'}
           />
+          <p>Please select a graphics card</p>
         </div>
-        <div className="sidebar-button js-storage-sidebar-container"
+        <div className="sidebar-button"
           onClick={() => {
-            setOverlay(selectedComponents.storageImage || storage_icon)
+            setOverlay({item:"storage", path:selectedComponents.storageImage || storage_icon})
             autoScroll('storage')
           }}
         >
           <img src={selectedComponents.storageImage || storage_icon} 
-            alt="default or selected storage icon"
+            alt={selectedComponents.storageImage === '' ? 'default storage icon': 'selected storage'}
           />
+          <p>Please select a storage</p>
         </div>
-        <div className="sidebar-button js-ram-sidebar-container"
+        <div className="sidebar-button"
           onClick={() => {
-            setOverlay(selectedComponents.ramImage || ram_icon)
+            setOverlay({item:"memory", path:selectedComponents.ramImage || ram_icon})
             autoScroll('ram')
           }}
         >
           <img src={selectedComponents.ramImage || ram_icon} 
-            alt="default or selected memory icon"
+            alt={selectedComponents.ramImage === '' ? 'default memory icon': 'selected memory'}
           />
+          <p>Please select a memory</p>
         </div>
-        <div className="sidebar-button js-psu-sidebar-container"
+        <div className="sidebar-button"
           onClick={() => {
-            setOverlay(selectedComponents.psuImage || psu_icon)
+            setOverlay({item:"power supply", path:selectedComponents.psuImage || psu_icon})
             autoScroll('psu')
           }}
         >
           <img src={selectedComponents.psuImage || psu_icon} 
-            alt="default or selected psu icon"
+            alt={selectedComponents.psuImage === '' ? 'default power supply icon': 'selected power supply'}
           />
+          <p>Please select a power supply</p>
         </div>
-        <div className="sidebar-button js-case-sidebar-container"
+        <div className="sidebar-button"
           onClick={() => {
-            setOverlay(selectedComponents.caseImage || case_icon)
+            setOverlay({item:"case", path:selectedComponents.caseImage || case_icon})
             autoScroll('case')
           }}
         >
           <img src={selectedComponents.caseImage || case_icon} 
-            alt="default or selected case icon"
+            alt={selectedComponents.caseImage === '' ? 'default case icon': 'selected case'}
           />
+          <p>Please select a case</p>
         </div>
-        <div className="sidebar-button js-cooler-sidebar-container"
+        <div className="sidebar-button"
           onClick={() => {
-            setOverlay(selectedComponents.coolerImage || cooler_icon)
+            setOverlay({item:"cooler", path:selectedComponents.coolerImage || cooler_icon})
             autoScroll('cooler')
           }}
         >
           <img src={selectedComponents.coolerImage || cooler_icon} 
-            alt="default or selected cooler icon"
+            alt={selectedComponents.coolerImage === '' ? 'default cooler icon': 'selected cooler'}
           />
+          <p>Please select a cooler</p>
         </div>
       </div>
 
       <main className="buildpage">
         <div className="build-grid">
-          <div className="section-1">
+          <section aria-label="components list" className="section-1">
             <h1>
               Select your components below to get an estimated price
             </h1>
@@ -281,12 +347,12 @@ function BuildPage () {
                 }
               })}
             />
-          </div>
+          </section>
 
-          <div className="section-2">
-            <p className="cost-title">
+          <section aria-labelledby="label" className="section-2">
+            <h2 id="label" className="cost-title">
               Cost Summary
-            </p>
+            </h2>
             <div className="js-section-2">
               <div className="cost-element">
                 <p>
@@ -344,7 +410,7 @@ function BuildPage () {
 
               <div className="cost-element">
                 <p>
-                  Case  :
+                  Case :
                 </p>
                 <p className="cost">
                   &#x20B9; {formatCurrency(selectedComponents.casePrice)}
@@ -353,7 +419,7 @@ function BuildPage () {
 
               <div className="cost-element">
                 <p>
-                  Cooler  :
+                  Cooler :
                 </p>
                 <p className="cost">
                   &#x20B9; {formatCurrency(selectedComponents.coolerPrice)}
@@ -369,11 +435,11 @@ function BuildPage () {
                 </p>
               </div>
             </div>
-          </div>
+          </section>
         </div>
 
         <div className="image-box js-image-box">
-          {overlay !== "" && <OverlayElement/>}
+          {overlay.path !== "" && <OverlayElement/>}
         </div>
       </main>
     </>

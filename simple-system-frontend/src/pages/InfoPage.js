@@ -1,3 +1,5 @@
+import { ScrollRestoration } from 'react-router-dom';
+
 import { useState } from 'react';
 
 import {Header} from '../components/Header.js';
@@ -22,46 +24,68 @@ function InfoPage () {
   const [view, setView] = useState(() => "")
   return (
     <>
+      <ScrollRestoration />
+      
       <Header location={"infoPage"}/>
   
-      <nav className="info-sidebar">
-        <div className={`sidebar-link ${view === 'cpu' && "selected"}`}
+      <div role="tablist" aria-label="select for information" className="info-sidebar">
+        <button 
+          role="tab"
+          aria-expanded={view === 'cpu'? 'true' : 'false'}
+          aria-controls="contentRegion"
+          className={`info-sidebar-button ${view === 'cpu' && "selected"}`}
           onClick={() => setView("cpu")}
         >
           <img src={cpu_icon} alt="processor_icon"/>
           CPU
-        </div>
+        </button>
 
-        <div className={`sidebar-link ${view === 'gpu' && "selected"}`}
+        <button 
+          role="tab"
+          aria-expanded={view === 'gpu'? 'true' : 'false'}
+          aria-controls="contentRegion"
+          className={`info-sidebar-button ${view === 'gpu' && "selected"}`}
           onClick={() => setView("gpu")}
         >
           <img src={gpu_icon} alt="graphic card icon"/>
           GPU
-        </div>
+        </button>
 
-        <div className={`sidebar-link ${view === 'display' && "selected"}`}
+        <button 
+          role="tab"
+          aria-expanded={view === 'display'? 'true' : 'false'}
+          aria-controls="contentRegion"
+          className={`info-sidebar-button ${view === 'display' && "selected"}`}
           onClick={() => setView("display")}
         >
           <img src={monitor_icon} alt="display icon"/>
           Display
-        </div>
+        </button>
 
-        <div className={`sidebar-link ${view === 'memory' && "selected"}`}
+        <button 
+          role="tab"
+          aria-expanded={view === 'memory'? 'true' : 'false'}
+          aria-controls="contentRegion"
+          className={`info-sidebar-button ${view === 'memory' && "selected"}`}
           onClick={() => setView("memory")}
         >
           <img src={memory_icon} alt="memory and storage icon"/>
           Memory &amp; Storage
-        </div>
+        </button>
 
-        <div className={`sidebar-link ${view === 'connectivity' && "selected"}`}
+        <button
+          role="tab"
+          aria-expanded={view === 'connectivity'? 'true' : 'false'}
+          aria-controls="contentRegion" 
+          className={`info-sidebar-button ${view === 'connectivity' && "selected"}`}
           onClick={() => setView("connectivity")}
         >
           <img src={connect_icon} alt="connectivity icon"/>
           Connectivity
-        </div>
-      </nav>
+        </button>
+      </div>
     
-      <main className="infopage js-content">
+      <main id="contentRegion" aria-live="assertive" className="infopage">
         {view === "cpu" && <CpuHTML/>}
         {view === "gpu" && <GpuHTML/>}
         {view === "display" && <DisplayHTML/>}
@@ -71,7 +95,7 @@ function InfoPage () {
         {view === "" && 
         <p>
           <b>
-            &#8679; Click on any tab of the nav bar above for information about each components. 
+            &#8679; Click any tab on the tab bar above for information about each components. 
           </b>
 
           <br/>

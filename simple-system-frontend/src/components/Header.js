@@ -12,8 +12,8 @@ export function Header (props) {
     <header className="header">
       <div className="logo">
         <Link to={'/'}>
-          <img className="ss-logo" src={ss_logo} alt="logo"/>
-          <img className="ss-text" src={ss_text} alt="logo-text"/>
+          <img className="ss-logo" src={ss_logo} alt="Simple System logo"/>
+          <img className="ss-text" src={ss_text} alt="Simple System logo text"/>
         </Link>
       </div>
 
@@ -24,8 +24,12 @@ export function Header (props) {
           <input type="text"
             name="searchString" 
             className="search-bar" 
-            placeholder="Filter Laptops
-          "/>
+            placeholder="Filter Laptops"
+            id="search-input"
+          />
+          <label htmlFor="search-input" className="search-label">
+            filter laptops by specification
+          </label>
           <button className="search-button">
             <img className="search-icon" 
               src={search_icon} 
@@ -35,7 +39,7 @@ export function Header (props) {
         </form>
       }
       
-      <div className="right-section">
+      <nav className="right-section">
         {props.location !== "homePage" && 
           <Link className="laptop-button" to={'/'}>
             Laptop
@@ -53,7 +57,7 @@ export function Header (props) {
             Build
           </Link>
         }
-      </div>
+      </nav>
     </header>
   )
 }

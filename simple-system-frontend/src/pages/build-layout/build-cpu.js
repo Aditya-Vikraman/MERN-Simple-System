@@ -106,11 +106,12 @@ export default function ProcessorHTML (props) {
 
   return (
     <>
-      <p className="sub-heading"
+      <h2 className="sub-heading"
         ref={props.ref}
       >
         Processor (CPU)
-      </p>
+      </h2>
+      
       <div className="options">
         <EnchancedComponent {...props}/>
       </div>

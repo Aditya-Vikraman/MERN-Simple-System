@@ -108,12 +108,14 @@ export default function GpuHTML (props) {
 
   return (
     <>
-      <p className="sub-heading"
+      <h2 className="sub-heading"
         ref={props.ref}
       >
         Graphics Card (GPU)
-      </p>
-      <div className="selector">
+      </h2>
+
+      <fieldset className="selector">
+        <legend>Select Gpu Brand</legend>
         <div className="selector-option">
           <input className="gpu-selector-button" 
             type="radio" 
@@ -121,8 +123,9 @@ export default function GpuHTML (props) {
             value="nvidia"
             checked={gpuComp === "nvidia"}
             onChange={(event) => {setGpuComp(event.target.value)}}
+            id="nvidia"
           />
-          <div><b>NVIDIA</b></div>
+          <label htmlFor="nvidia"><b>NVIDIA</b></label>
         </div>
         <div className="selector-option">
           <input className="gpu-selector-button" 
@@ -131,12 +134,13 @@ export default function GpuHTML (props) {
             value="AMD"
             checked={gpuComp === "AMD"}
             onChange={(event) => {setGpuComp(event.target.value)}}
+            id="AMD"
           />
-          <div><b>AMD</b></div>
+          <label htmlFor="AMD"><b>AMD</b></label>
         </div>
-      </div>
+      </fieldset>
     
-      <div className="options js-gpu-options">
+      <div className="options">
         <EnchancedComponent 
           {...props}
           gpuComp = {gpuComp}

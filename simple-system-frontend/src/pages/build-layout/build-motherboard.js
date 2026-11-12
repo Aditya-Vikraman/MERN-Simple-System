@@ -97,13 +97,14 @@ export default function MotherboardHTML (props) {
 
   return (
     <>
-      <p className="sub-heading"
+      <h2 className="sub-heading"
         ref={props.ref}
       >
         Motherboard
-      </p>
+      </h2>
 
-      <div className="selector">
+      <fieldset className="selector">
+        <legend>Select Socket</legend>
         <div className="selector-option">
           <input className="socket-selector-button" 
             type="radio" 
@@ -111,8 +112,9 @@ export default function MotherboardHTML (props) {
             value="LGA-1851"
             checked={props.socket === "LGA-1851"}
             onChange={(event) => props.handleChange(event.target.value)}
+            id="LGA-1851"
           />
-          <div><b>Intel Core Ultra<br/> LGA 1851</b></div>
+          <label htmlFor="LGA-1851"><b>Intel Core Ultra<br/> LGA 1851</b></label>
         </div>
         <div className="selector-option">
           <input className="socket-selector-button" 
@@ -121,8 +123,9 @@ export default function MotherboardHTML (props) {
             value="LGA-1700"
             checked={props.socket === "LGA-1700"}
             onChange={(event) => props.handleChange(event.target.value)}
+            id="LGA-1700"
           />
-          <div><b>Intel (12th, 13th, 14th gen)<br/> LGA 1700</b></div>
+          <label htmlFor="LGA-1700"><b>Intel (12th, 13th, 14th gen)<br/> LGA 1700</b></label>
         </div>
         <div className="selector-option">
           <input className="socket-selector-button" 
@@ -131,8 +134,9 @@ export default function MotherboardHTML (props) {
             value="AM5"
             checked={props.socket === "AM5"}
             onChange={(event) => props.handleChange(event.target.value)}
+            id="AM5"
           />
-          <div><b>AMD (7th, 8th, 9th gen)<br/> AM5</b></div>
+          <label htmlFor="AM5"><b>AMD (7th, 8th, 9th gen)<br/> AM5</b></label>
         </div>
         <div className="selector-option">
           <input className="socket-selector-button" 
@@ -141,12 +145,14 @@ export default function MotherboardHTML (props) {
             value="AM4"
             checked={props.socket === "AM4"}
             onChange={(event) => props.handleChange(event.target.value)}
+            id="AM4"
           />
-          <div><b>AMD (5th gen)<br/> AM4</b></div>
+          <label htmlFor="AM4"><b>AMD (5th gen)<br/> AM4</b></label>
         </div> 
-      </div>
+      </fieldset>
       
       <div className="options">
+        {/* {motherboardElements} */}
         <EnchancedComponent {...props}/>
       </div>
     </>

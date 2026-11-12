@@ -1,9 +1,13 @@
 function ConnectivityHTML () {
   return (
     <>
-      <p className="topic">
+      <h1 className="title">
+        Connectivity
+      </h1>
+
+      <h2 className="topic">
         Wi&ndash;Fi &amp; Bluetooth
-      </p>
+      </h2>
       <p>
         Laptop motherboards come with a built&ndash;in Wi&ndash;Fi card which also conatins bluetooth.<br/>
         Desktop motherboards do not all come with built&ndash;in Wi&ndash;Fi card. But, most manufacturers provide Wi&ndash;Fi variants of certain motherboards at an extra cost.<br/>
@@ -12,9 +16,9 @@ function ConnectivityHTML () {
         If your motherboard does not feature Bluetooth or a Wi&ndash;Fi card, you can easily install one by getting a simple PCIe Wi&ndash;Fi expansion card.
       </p>
 
-      <p className="topic">
+      <h2 className="topic">
         USB 4.0 &amp; Thunderbolt 4
-      </p>
+      </h2>
       <p>
         A USB port are most common type of connectors provided on a motherboard.<br/>
         The latest is the USB 4.0 Type&ndash;c, where c refers to the form factor (oval). USB 3.3 is also type&ndash;c.
@@ -25,9 +29,9 @@ function ConnectivityHTML () {
         Thunderbolt 4 = 4.8 GB/s
       </p>
 
-      <p className="topic">
+      <h2 className="topic">
         HDMI and Display Port
-      </p>
+      </h2>
       <p>
         DisplayPort 1.4 is generally better than HDMI 2.0, HDMI 2.1 technically beats DisplayPort 1.4, and DisplayPort 2.1 trumps HDMI 2.1.<br/> 
         The problem is, you'll need support for the desired standard from both your graphics card and your display for things to work right.<br/>

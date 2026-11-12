@@ -45,6 +45,7 @@ main.buildpage {
 .selector {
   display: flex;
   justify-content: space-around;
+  border-radius: 25px;
 }
 
 .selector-option {
@@ -204,6 +205,11 @@ main.buildpage {
   cursor: pointer;
 }
 
+.build-sidebar p {
+  display: none;
+}
+
+
 @media (max-width: 575px) {
   .build-sidebar {
     position: fixed;
@@ -269,7 +275,7 @@ main.buildpage {
   position: fixed;
   top: 60px;
   bottom: 0;
-  left: 120px;
+  left: 0;
   right: 0;
   display: flex;
   justify-content: center;
@@ -277,8 +283,12 @@ main.buildpage {
   z-index: 1000;
 }
 
+.overlay-build {
+  left: 120px;
+}
+
 @media (max-width: 575px) {
-  .overlay {
+  .overlay-build {
     top: 120px;
     left: 0px;
   }
@@ -291,11 +301,24 @@ main.buildpage {
 
 .close-button {
   background-color: black;
+
+  font-family: Roboto, Arial;
   color: white;
+
   padding: 5px 12px;
+
+  border: none;
   border-radius: 20px;
+
   position: absolute;
   top: 10px;
   right: 10px;
   cursor: pointer;
+}
+
+.close-button:focus-visible {
+  outline: none;
+
+  box-shadow: 0 0 5px 5px rgba(66, 153, 225, 0.6);
+  border-color:#3182ce;
 }

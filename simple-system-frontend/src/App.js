@@ -8,6 +8,10 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
+// Anytime your app throws an error while rendering, loading data, or performing data mutations, React Router will catch it and render a default error screen. However we can create our own error page.
+
+// the error page must be set as errorElement on the root route.
+
 const router = createBrowserRouter([
   {
     path: "/",

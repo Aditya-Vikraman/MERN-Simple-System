@@ -69,11 +69,12 @@ export default function PsuHTML (props) {
 
   return (
     <>
-      <p className="sub-heading"
+      <h2 className="sub-heading"
         ref={props.ref}
       >
         Power Supply Unit (PSU)
-      </p>
+      </h2>
+      
       <div className="options">
         <EnchancedComponent {...props}/>
       </div>

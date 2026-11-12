@@ -72,11 +72,12 @@ export default function CoolerHTML (props) {
 
   return (
     <>
-      <p className="sub-heading"
+      <h2 className="sub-heading"
         ref={props.ref}
       >
         Cooler
-      </p>
+      </h2>
+      
       <div className="options">
         <EnchancedComponent {...props}/>
       </div>
