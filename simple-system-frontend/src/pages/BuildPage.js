@@ -134,7 +134,7 @@ function BuildPage () {
     if(scrollRefs.current[key]) {
       scrollRefs.current[key].scrollIntoView({
         behavior: 'smooth',
-        block: 'center'
+        block: 'start'
       })
     }
   }

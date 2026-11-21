@@ -33,6 +33,8 @@ main.buildpage {
   margin-bottom: 20px;
 }
 
+
+
 .sub-heading {
   font-weight: 600;
   font-size: 20px;
@@ -40,6 +42,13 @@ main.buildpage {
   padding: 3px 10px;
   border-radius: 25px;
   text-align: center;
+  scroll-margin-top: 65px;
+}
+
+@media (max-width: 575px) {
+  .sub-heading {
+    scroll-margin-top: 125px;
+  }
 }
 
 .selector {
