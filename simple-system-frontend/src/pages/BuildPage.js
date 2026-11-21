@@ -108,7 +108,9 @@ function BuildPage () {
       // if (focusRef.current) {
       //   focusRef.current.focus()
       // }
-      focusRef.current?.focus()
+      focusRef.current?.focus({
+        preventScroll: true
+      })
     },[])
 
     return (
@@ -153,7 +155,6 @@ function BuildPage () {
           <img src={selectedComponents.motherboardImage || motherboard_icon} 
             alt={selectedComponents.motherboardImage === '' ? 'default motherboard icon': 'selected motherboard'}
           />
-          <p>Please select a motherboard</p>
         </div>
         <div className="sidebar-button"
           onClick={() => {
@@ -164,7 +165,6 @@ function BuildPage () {
           <img src={selectedComponents.cpuImage || cpu_icon} 
             alt={selectedComponents.cpuImage === '' ? 'default processor icon': 'selected processor'}
           />
-          <p>Please select a processor</p>
         </div>
         <div className="sidebar-button"
           onClick={() => {
@@ -175,7 +175,6 @@ function BuildPage () {
           <img src={selectedComponents.gpuImage || gpu_icon} 
             alt={selectedComponents.gpuImage === '' ? 'default graphics card icon': 'selected graphics card'}
           />
-          <p>Please select a graphics card</p>
         </div>
         <div className="sidebar-button"
           onClick={() => {
@@ -186,7 +185,6 @@ function BuildPage () {
           <img src={selectedComponents.storageImage || storage_icon} 
             alt={selectedComponents.storageImage === '' ? 'default storage icon': 'selected storage'}
           />
-          <p>Please select a storage</p>
         </div>
         <div className="sidebar-button"
           onClick={() => {
@@ -197,7 +195,6 @@ function BuildPage () {
           <img src={selectedComponents.ramImage || ram_icon} 
             alt={selectedComponents.ramImage === '' ? 'default memory icon': 'selected memory'}
           />
-          <p>Please select a memory</p>
         </div>
         <div className="sidebar-button"
           onClick={() => {
@@ -208,7 +205,6 @@ function BuildPage () {
           <img src={selectedComponents.psuImage || psu_icon} 
             alt={selectedComponents.psuImage === '' ? 'default power supply icon': 'selected power supply'}
           />
-          <p>Please select a power supply</p>
         </div>
         <div className="sidebar-button"
           onClick={() => {
@@ -219,7 +215,6 @@ function BuildPage () {
           <img src={selectedComponents.caseImage || case_icon} 
             alt={selectedComponents.caseImage === '' ? 'default case icon': 'selected case'}
           />
-          <p>Please select a case</p>
         </div>
         <div className="sidebar-button"
           onClick={() => {
@@ -230,7 +225,6 @@ function BuildPage () {
           <img src={selectedComponents.coolerImage || cooler_icon} 
             alt={selectedComponents.coolerImage === '' ? 'default cooler icon': 'selected cooler'}
           />
-          <p>Please select a cooler</p>
         </div>
       </div>
 
