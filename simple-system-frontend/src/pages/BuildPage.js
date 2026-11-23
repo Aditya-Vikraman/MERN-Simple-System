@@ -1,8 +1,9 @@
 import { ScrollRestoration } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
 
 import { Header } from '../components/Header.js';
 import { formatCurrency } from '../utils/money.js';
-import { useState, useRef, useEffect } from 'react';
+import  ImageWithSpinner from '../components/ImageWithSpinner.js';
 
 import MotherboardHTML from './build-layout/build-motherboard.js';
 import ProcessorHTML from './build-layout/build-cpu.js';
@@ -152,9 +153,20 @@ function BuildPage () {
             autoScroll('motherboard')
           }}
         >
-          <img src={selectedComponents.motherboardImage || motherboard_icon} 
+          {selectedComponents.motherboardImage === '' ? (
+              <img src={motherboard_icon} alt="default motherboard icon"/>
+            ) : (
+              <ImageWithSpinner 
+                key={selectedComponents.motherboardImage}
+                src={selectedComponents.motherboardImage}
+                alt="selected motherboard"
+              />
+            ) 
+          }
+          {/* above key is necessary so that old src is unmounted. without key react reuses old node and spinner dosen't appear */}
+          {/* <img src={selectedComponents.motherboardImage || motherboard_icon} 
             alt={selectedComponents.motherboardImage === '' ? 'default motherboard icon': 'selected motherboard'}
-          />
+          /> */}
         </div>
         <div className="sidebar-button"
           onClick={() => {
@@ -162,9 +174,17 @@ function BuildPage () {
             autoScroll('cpu')
           }}
         >
-          <img src={selectedComponents.cpuImage || cpu_icon} 
-            alt={selectedComponents.cpuImage === '' ? 'default processor icon': 'selected processor'}
-          />
+          {selectedComponents.cpuImage === '' ? (
+              <img src={cpu_icon} alt="default processor icon"/>
+            ) : (
+              <ImageWithSpinner 
+                key={selectedComponents.cpuImage}
+                src={selectedComponents.cpuImage}
+                alt="selected processor"
+              />
+            ) 
+          }
+          
         </div>
         <div className="sidebar-button"
           onClick={() => {
@@ -172,9 +192,16 @@ function BuildPage () {
             autoScroll('gpu')
           }}
         >
-          <img src={selectedComponents.gpuImage || gpu_icon} 
-            alt={selectedComponents.gpuImage === '' ? 'default graphics card icon': 'selected graphics card'}
-          />
+          {selectedComponents.gpuImage === '' ? (
+              <img src={gpu_icon} alt="default graphics card icon"/>
+            ) : (
+              <ImageWithSpinner 
+                key={selectedComponents.gpuImage}
+                src={selectedComponents.gpuImage}
+                alt="selected graphics card"
+              />
+            ) 
+          }
         </div>
         <div className="sidebar-button"
           onClick={() => {
@@ -182,9 +209,16 @@ function BuildPage () {
             autoScroll('storage')
           }}
         >
-          <img src={selectedComponents.storageImage || storage_icon} 
-            alt={selectedComponents.storageImage === '' ? 'default storage icon': 'selected storage'}
-          />
+          {selectedComponents.storageImage === '' ? (
+              <img src={storage_icon} alt="default storage icon"/>
+            ) : (
+              <ImageWithSpinner 
+                key={selectedComponents.storageImage}
+                src={selectedComponents.storageImage}
+                alt="selected storage"
+              />
+            ) 
+          }
         </div>
         <div className="sidebar-button"
           onClick={() => {
@@ -192,9 +226,16 @@ function BuildPage () {
             autoScroll('ram')
           }}
         >
-          <img src={selectedComponents.ramImage || ram_icon} 
-            alt={selectedComponents.ramImage === '' ? 'default memory icon': 'selected memory'}
-          />
+          {selectedComponents.ramImage === '' ? (
+              <img src={ram_icon} alt="default memory icon"/>
+            ) : (
+              <ImageWithSpinner 
+                key={selectedComponents.ramImage}
+                src={selectedComponents.ramImage}
+                alt="selected memory"
+              />
+            ) 
+          }
         </div>
         <div className="sidebar-button"
           onClick={() => {
@@ -202,9 +243,16 @@ function BuildPage () {
             autoScroll('psu')
           }}
         >
-          <img src={selectedComponents.psuImage || psu_icon} 
-            alt={selectedComponents.psuImage === '' ? 'default power supply icon': 'selected power supply'}
-          />
+          {selectedComponents.psuImage === '' ? (
+              <img src={psu_icon} alt="default power supply icon"/>
+            ) : (
+              <ImageWithSpinner 
+                key={selectedComponents.psuImage}
+                src={selectedComponents.psuImage}
+                alt="selected power supply"
+              />
+            ) 
+          }
         </div>
         <div className="sidebar-button"
           onClick={() => {
@@ -212,9 +260,16 @@ function BuildPage () {
             autoScroll('case')
           }}
         >
-          <img src={selectedComponents.caseImage || case_icon} 
-            alt={selectedComponents.caseImage === '' ? 'default case icon': 'selected case'}
-          />
+          {selectedComponents.caseImage === '' ? (
+              <img src={case_icon} alt="default case icon"/>
+            ) : (
+              <ImageWithSpinner 
+                key={selectedComponents.caseImage}
+                src={selectedComponents.caseImage}
+                alt="selected case"
+              />
+            ) 
+          }
         </div>
         <div className="sidebar-button"
           onClick={() => {
@@ -222,9 +277,16 @@ function BuildPage () {
             autoScroll('cooler')
           }}
         >
-          <img src={selectedComponents.coolerImage || cooler_icon} 
-            alt={selectedComponents.coolerImage === '' ? 'default cooler icon': 'selected cooler'}
-          />
+          {selectedComponents.coolerImage === '' ? (
+              <img src={cooler_icon} alt="default cooler icon"/>
+            ) : (
+              <ImageWithSpinner 
+                key={selectedComponents.coolerImage}
+                src={selectedComponents.coolerImage}
+                alt="selected cooler"
+              />
+            ) 
+          }
         </div>
       </div>
 

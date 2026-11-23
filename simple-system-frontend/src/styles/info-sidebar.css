@@ -87,10 +87,14 @@
 }
 
 .info-sidebar-button:hover {
-  background-color: rgb(80, 80, 80);
+  background-color: rgb(100, 100, 100);
 }
 
 .selected {
+  background-color: rgb(80, 80, 80);
+}
+
+.selected:hover {
   background-color: rgb(80, 80, 80);
 }
 
